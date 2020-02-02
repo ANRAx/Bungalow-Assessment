@@ -1,7 +1,7 @@
 <template>
     <div class="flex-grid">
         <div class="card" style="width: 18rem;" v-for="property in properties" v-bind:key=property.id>
-            <img v-bind:src="property.images && property.images[0] && property.images[0].sm_url">
+            <img v-bind:src="property.images && property.images[0] && property.images[0].md_url" class="card-image">
             <div class="card-body">
                 <p class="card-text">{{property.headline}}</p>
                 <p class="card-text">{{property.available_room_count}} of {{property.total_room_count}} rooms available</p>
@@ -46,28 +46,36 @@ export default {
 
   .card {
     flex: 0 1 24%;
+    margin-bottom: 15px;
   }
-  
-  @media screen and (min-width: 40em) {
-    .flex-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-    }
-    .card {
-      flex: 0 1 24%; 
-    }
-    @media screen and (min-width: 60em) {
-      .card {
-        flex: 0 1 24%;
-      }
-      @media screen and (min-width: 40em) {
-        .flex-grid {
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: space-between;
+
+ .card > img {
+     height: 315px;
+ }
+
+    @media screen and (max-width: 480px) {
+        .card {
+            flex: 0 1 99%
         }
-      }
     }
-  }
+
+    @media only screen and (min-width: 481px) and (max-width: 900px) {
+        .card {
+            flex: 0 1 32%
+        }
+
+        .card > img {
+            height: 180px;
+        }
+    }
+
+    @media only screen and (min-width: 901px) and (max-width: 1024px) {
+        .card {
+            flex: 0 1 24%
+        }
+    }
+
+
+
+  
 </style>
