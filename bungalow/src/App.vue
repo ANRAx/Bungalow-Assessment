@@ -1,13 +1,13 @@
 <template>
   <div id="app">
-    <Card />
     <Navbar />
+    <Card />
   </div>
 </template>
 
 <script>
-import Card from './components/Card'
 import Navbar from './components/Navbar'
+import Card from './components/Card'
 
 export default {
   name: 'app',

@@ -38,5 +38,19 @@
 </script>
 
 <style>
-    
+    body {
+       background-color: #f5eaea;
+   }
+
+   .navbar {
+       padding-left: 45px;
+       padding-right: 45px;
+       background-color: #7fcd91 !important;
+   }
+
+   .navbar-brand {
+       font-family: 'Marck Script', cursive;
+       font-size: 2em;
+   }
+   
 </style>

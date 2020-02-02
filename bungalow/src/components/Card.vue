@@ -37,5 +37,37 @@ export default {
 </script>
 
 <style scoped>
+.flex-grid {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 50px 25px 0 25px;
+  }
 
+  .card {
+    flex: 0 1 24%;
+  }
+  
+  @media screen and (min-width: 40em) {
+    .flex-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    .card {
+      flex: 0 1 24%; 
+    }
+    @media screen and (min-width: 60em) {
+      .card {
+        flex: 0 1 24%;
+      }
+      @media screen and (min-width: 40em) {
+        .flex-grid {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+        }
+      }
+    }
+  }
 </style>
