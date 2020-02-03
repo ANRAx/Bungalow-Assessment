@@ -1,48 +1,111 @@
 <template>
     <div class="flex-grid">
-        <div class="card" style="width: 18rem;" v-for="property in properties" v-bind:key=property.id>
-            <img
-             class="card-image"
-             v-bind:src="property.images && property.images[0] && property.images[0].md_url || 'https://cdn.pixabay.com/photo/2017/07/28/23/18/coming-soon-2550190_960_720.jpg'">
-            <div class="card-body">
-                <p class="card-text">{{property.headline}}</p>
-                <p class="card-text">{{property.available_room_count}} of {{property.total_room_count}} rooms available</p>
-                <p class="card-text">${{property.room_prices[0]}}</p>
-            </div>
+        <div
+          class="card"
+          style="width: 18rem;"
+          v-for="property in properties"
+          v-bind:key=property.id
+        >
+          <Card
+            v-bind:property="property"
+            v-bind:image="imageIndexMap && property.images[imageIndexMap[property.id]] || property.images[0]"
+            :callback="(clickedPropertyId, direction) => updateImageIndex(clickedPropertyId, direction, property.images.length)"
+          />
         </div>
     </div>
 </template>
 
 <script>
-import axios from 'axios';
+    import Card from "./Card"
+    import axios from "axios";
 
-export default {
-    name: 'Grid',
-    data() {
-        return {
-            properties: [
-                {
-                    images: []
+
+    export default {
+        name: 'Grid',
+        components: {
+          Card
+        },
+        data() {
+            return {
+                properties: [
+                    {
+                        images: []
+                    }
+                ],
+                // maps propery id of card to index of image we want to display
+                imageIndexMap: null,
+            };
+        },
+        methods: {
+            updateImageIndex: function(clickedPropertyId, direction, maxImagesCount) {
+                if (this.imageIndexMap && (this.imageIndexMap[clickedPropertyId] || this.imageIndexMap[clickedPropertyId] === 0)) {
+                  if (direction === "previous" && this.imageIndexMap[clickedPropertyId] !== 0) {
+                    this.imageIndexMap[clickedPropertyId] -= 1
+                  } else {
+                    // we do not want to set an index that is out of bounds
+                    if (this.imageIndexMap[clickedPropertyId] + 1 < maxImagesCount - 1) {
+                      this.imageIndexMap[clickedPropertyId] += 1
+                    }
+                  }
+                } else {
+                  this.imageIndexMap = {
+                    ...this.imageIndexMap,
+                    [clickedPropertyId]: 1
+                  }
                 }
-            ]
-        };
-    },    
-
-    created: function() {
-        axios
-            .get('https://stage-fieldstone.bungalow.com/api/v1/listings/properties/?market__slug=seattle')
-            .then(res => {
-                this.properties = res.data.results;
-            })
+            }
+        },
+        created: function() {
+            axios
+                .get('https://stage-fieldstone.bungalow.com/api/v1/listings/properties/?market__slug=seattle')
+                .then(res => {
+                    this.properties = res.data.results;
+                })
+        }
     }
-}
 </script>
 
-<style scoped> 
-   .flex-grid {
+<style scoped>
+.flex-grid {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     margin: 50px 25px 0 25px;
-  } 
+  }
+
+  .card {
+    flex: 0 1 24%;
+    height: 500px;
+    margin-bottom: 12px;
+  }
+
+  .card-image {
+    height: 315px;
+  }
+
+  @media screen and (max-width: 480px) {
+    .card {
+      flex: 0 1 99%;
+    }
+  }
+
+  @media only screen and (min-width: 481px) and (max-width: 700px) {
+    .card {
+      flex: 0 1 32%;
+    }
+
+    .card > img {
+      height: 180px;
+    }
+  }
+
+  @media only screen and (min-width: 701px) and (max-width: 1024px) {
+    .card {
+      flex: 0 1 24%;
+    }
+
+    .card > img {
+      height: 180px;
+    }
+  }
 </style>
