@@ -6,28 +6,25 @@
         </button>
          <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Find a home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Homeowners</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Community</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
-            </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href=" http://localhost:8080/">Find a home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://bungalow.com/homeowners">Homeowners</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://bungalow.com/community">Community</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://bungalow.com/about">About</a>
+                </li>
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                <a class="nav-link" href="#">FAQs</a>
+                <a class="nav-link" href="https://bungalow.com/faq#howtolive">FAQs</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Login</a>
+                <a class="nav-link" href="https://bungalow.com/faq#howtolive">Login</a>
             </li>
             </ul>
         </div>
@@ -52,5 +49,5 @@
        font-family: 'Marck Script', cursive;
        font-size: 2em;
    }
-   
+
 </style>
