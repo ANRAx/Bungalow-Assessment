@@ -1,19 +1,19 @@
 <template>
   <div id="app">
     <Navbar />
-    <Card />
+    <Grid />
   </div>
 </template>
 
 <script>
 import Navbar from './components/Navbar'
-import Card from './components/Card'
+import Grid from './components/Grid'
 
 export default {
   name: 'app',
   components: {
     Navbar,
-    Card
+    Grid
   }
 }
 </script>
